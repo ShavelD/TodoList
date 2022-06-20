@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {TaskType} from "../Todolist"
 import EditableSpan from "./EditableSpan";
+import {Checkbox, IconButton} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 
 type PropsType = {
@@ -8,7 +10,7 @@ type PropsType = {
     todolistID: string
     removeTask: (todolistID: string, taskId: string) => void
     changeTaskStatus: (todolistID: string, taskId: string, isDone: boolean) => void
-    editTaskHandler:  (taskID: string, newTitle: string) => void
+    editTaskHandler: (taskID: string, newTitle: string) => void
 }
 
 
@@ -24,13 +26,22 @@ export const MapComponent = ({tasksForTodolist, todolistID, removeTask, ...props
                         }
 
                         return <li key={t.id} className={t.isDone ? "is-done" : ""}>
-                            <input type="checkbox"
-                                   onChange={onChangeHandler}
-                                   checked={t.isDone}
+                            <Checkbox defaultChecked
+                                      onChange={onChangeHandler}
+                                      checked={t.isDone}
                             />
+                            {/*<input type="checkbox"*/}
+                            {/*       onChange={onChangeHandler}*/}
+                            {/*       checked={t.isDone}*/}
+                            {/*/>*/}
                             <EditableSpan title={t.title}
-                                          callBack={(newTitle) =>props.editTaskHandler(t.id, newTitle)}/>
-                            <button onClick={onClickHandler}>x</button>
+                                          callBack={(newTitle) => props.editTaskHandler(t.id, newTitle)}/>
+                            <IconButton aria-label="delete">
+                                <Delete
+                                    style={{maxWidth: '18px', maxHeight: '23px', minWidth: '18px', minHeight: '23px'}}
+                                    onClick={onClickHandler}/>
+                            </IconButton>
+                            {/*<button onClick={onClickHandler}>x</button>*/}
                         </li>
                     })
                 }
