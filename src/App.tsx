@@ -3,6 +3,8 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 import AddItemForm from "./components/AddItemForm";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
+import {Menu} from "@mui/icons-material";
 
 export type TodolistsType = {
     id: string,
@@ -39,10 +41,10 @@ function App() {
         ]
     });
     const editTodolist = (todolistID: string, newTitle: string) => {
-      setTodolists(todolists.map(el => el.id === todolistID ? {...el, title: newTitle}: el))
+        setTodolists(todolists.map(el => el.id === todolistID ? {...el, title: newTitle} : el))
     }
 
-    const editTask = (todolistID:string, taskID: string,newTitle: string) => {
+    const editTask = (todolistID: string, taskID: string, newTitle: string) => {
         setTasks({
             ...tasks,
             [todolistID]: tasks[todolistID].map(el => el.id === taskID ? {...el, title: newTitle} : el)
@@ -76,29 +78,50 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemForm callBack={addTodolist}/>
-            {
-                todolists.map((el) => {
-                    return (
-                        <Todolist
-                            key={el.id}
-                            todolistID={el.id}
-                            title={el.title}
-                            tasks={tasks[el.id]}
-                            removeTask={removeTask}
-                            //changeFilter={changeFilter}
-                            addTask={addTask}
-                            changeTaskStatus={changeStatus}
-                            filter={el.filter}
-                            setTodolists={setTodolists}
-                            todolists={todolists}
-                            removeTodolist={removeTodolist}
-                            editTodolist={editTodolist}
-                            editTask={editTask}
-                        />
-                    )
-                })
-            }
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        Todolist
+                    </Typography>
+                    <Button color='inherit'>Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid container style={{padding: '20px'}}>
+                    <AddItemForm callBack={addTodolist}/>
+                </Grid>
+                <Grid container spacing={3}>
+                    {
+                        todolists.map((el) => {
+                            return (
+                                <Grid item>
+                                    <Paper style={{padding: '10px'}}>
+                                <Todolist
+                                    key={el.id}
+                                    todolistID={el.id}
+                                    title={el.title}
+                                    tasks={tasks[el.id]}
+                                    removeTask={removeTask}
+                                    //changeFilter={changeFilter}
+                                    addTask={addTask}
+                                    changeTaskStatus={changeStatus}
+                                    filter={el.filter}
+                                    setTodolists={setTodolists}
+                                    todolists={todolists}
+                                    removeTodolist={removeTodolist}
+                                    editTodolist={editTodolist}
+                                    editTask={editTask}
+                                />
+                                </Paper>
+                                </Grid>
+                            )
+                        })
+                    }
+                </Grid>
+            </Container>
         </div>
     );
 }

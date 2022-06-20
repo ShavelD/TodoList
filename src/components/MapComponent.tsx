@@ -17,7 +17,7 @@ type PropsType = {
 export const MapComponent = ({tasksForTodolist, todolistID, removeTask, ...props}: PropsType) => {
     return (
         <div>
-            <ul>
+            <div>
                 {
                     tasksForTodolist.map(t => {
                         const onClickHandler = () => removeTask(todolistID, t.id)
@@ -25,7 +25,7 @@ export const MapComponent = ({tasksForTodolist, todolistID, removeTask, ...props
                             props.changeTaskStatus(todolistID, t.id, e.currentTarget.checked);
                         }
 
-                        return <li key={t.id} className={t.isDone ? "is-done" : ""}>
+                        return <div key={t.id} className={t.isDone ? "is-done" : ""}>
                             <Checkbox defaultChecked
                                       onChange={onChangeHandler}
                                       checked={t.isDone}
@@ -42,10 +42,10 @@ export const MapComponent = ({tasksForTodolist, todolistID, removeTask, ...props
                                     onClick={onClickHandler}/>
                             </IconButton>
                             {/*<button onClick={onClickHandler}>x</button>*/}
-                        </li>
+                        </div>
                     })
                 }
-            </ul>
+            </div>
         </div>
     );
 };

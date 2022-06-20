@@ -14,7 +14,7 @@ const EditableSpan = (props: EditableSpanPropsType) => {
     }
 
     const addTask = () => {
-            props.callBack(newTitle);
+        props.callBack(newTitle);
     }
 
     const [edit, setEdit] = useState(false)
@@ -25,14 +25,15 @@ const EditableSpan = (props: EditableSpanPropsType) => {
     return (
         edit
             ?
-            <TextField id="outlined-basic"
-                       variant="outlined"
-                       onBlur={EditTrueHandler}
-                       onChange={onChangeHandler}
-                       autoFocus
-                       type="text"
-                       value={newTitle}
-                       size='small'
+            <TextField
+                id="outlined-basic"
+                variant="outlined"
+                onBlur={EditTrueHandler}
+                onChange={onChangeHandler}
+                autoFocus
+                type="text"
+                value={newTitle}
+                size='small'
             />
             // <input
             //     onBlur={EditTrueHandler} onChange={onChangeHandler} autoFocus type="text" value={newTitle}/>
