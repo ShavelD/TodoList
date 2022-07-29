@@ -41,7 +41,6 @@ export const MapComponent = ({tasksForTodolist, todolistID, removeTask, ...props
                                     style={{maxWidth: '18px', maxHeight: '23px', minWidth: '18px', minHeight: '23px'}}
                                     onClick={onClickHandler}/>
                             </IconButton>
-                            {/*<button onClick={onClickHandler}>x</button>*/}
                         </div>
                     })
                 }

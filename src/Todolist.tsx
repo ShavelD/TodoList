@@ -62,13 +62,11 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3>
-            {/*{props.title}*/}
             <EditableSpan title={props.title} callBack={editTodolistHandler}/>
             <Button
                 variant="outlined" color="error"
                 style={{maxWidth: '15px', maxHeight: '21px', minWidth: '15px', minHeight: '21px', marginLeft: '8px'}}
                 onClick={removeTodolistHandler}>x</Button>
-            {/*<button onClick={removeTodolistHandler}>X</button>*/}
         </h3>
         <AddItemForm callBack={addTaskHandler}/>
         <MapComponent
@@ -85,15 +83,6 @@ export function Todolist(props: PropsType) {
                     onClick={onActiveClickHandler}>Active</Button>
             <Button variant={props.filter === 'completed' ? "outlined" : "contained"} color="secondary"
                     onClick={onCompletedClickHandler}>Completed</Button>
-            {/*<button className={props.filter === 'all' ? "active-filter" : ""}*/}
-            {/*        onClick={onAllClickHandler}>All*/}
-            {/*</button>*/}
-            {/*<button className={props.filter === 'active' ? "active-filter" : ""}*/}
-            {/*        onClick={onActiveClickHandler}>Active*/}
-            {/*</button>*/}
-            {/*<button className={props.filter === 'completed' ? "active-filter" : ""}*/}
-            {/*        onClick={onCompletedClickHandler}>Completed*/}
-            {/*</button>*/}
         </div>
     </div>
 }
